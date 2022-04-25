@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.student_manage.mapper.LeaveRecordMapper">
+
+    <!--boolean addRecord(LeaveRecord record);-->
+    <insert id="addRecord" useGeneratedKeys="true" keyProperty="recordId">
+        INSERT INTO t_leave_record
+        (student_id, student_name, leave_time, return_time, reason)
+        VALUES
+        (#{studentId}, #{studentName}, #{leaveTime}, #{returnTime}, #{reason})
+    </insert>
+
+    <!--boolean approveRecord(Integer recordId, Integer managerId, String managerName);-->
+    <update id="approveRecord">
+        UPDATE t_leave_record
+        SET
+          manager_id = #{managerId},
+          manager_name = #{managerName}
+        WHERE record_id = #{recordId}
+    </update>
+
+    <!--List<LeaveRecord> getAllRecords();-->
+    <select id="getAllRecords" resultType="leaveRecord">
+        SELECT *
+        FROM t_leave_record
+        <if test="studentId != null">
+            WHERE student_id = #{studentId}
+        </if>
+        ORDER BY apply_time DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.student_manage.mapper.StudentMapper">
+
+<!--    <select id="fuzzyQuery" resultType="">-->
+
+<!--    </select>-->
+    <!--Student getStudentByName(String name);-->
+    <select id="getStudentByName" resultType="student">
+        SELECT *
+        FROM t_student
+        WHERE student_name = #{name}
+    </select>
+
+    <select id="fuzzyQueryByName" resultType="student" parameterType="String">
+        SELECT *
+        FROM t_student
+        WHERE student_name LIKE CONCAT('%',#{name},'%')
+    </select>
+
+
+<!--    boolean editStudent(Student student);-->
+    <update id="editStudent" parameterType="student" keyProperty="studentId">
+        UPDATE t_student
+        <set>
+            <if test="studentName !=null and studentName!=''">
+                student_name = #{studentName},
+            </if>
+            <if test="department !=null and department!=''">
+                department = #{department},
+            </if>
+            <if test="majority !=null and majority!=''">
+                majority = #{majority},
+            </if>
+            <if test="grade !=null and grade!=''">
+                grade = #{grade},
+            </if>
+            <if test="classNo !=null and classNo!=''">
+                class_no = #{classNo},
+            </if>
+            <if test="graduateYear !=null and graduateYear!=''">
+                graduate_year = #{graduateYear},
+            </if>
+            <if test="sourceCity !=null and sourceCity!=''">
+                source_city = #{sourceCity},
+            </if>
+            <if test="address !=null and address!=''">
+                address = #{address},
+            </if>
+            <if test="studentPassword !=null and studentPassword!=''">
+                student_password = #{studentPassword},
+            </if>
+        </set>
+            WHERE student_id=#{studentId}
+    </update>
+
+<!--    boolean deleteStudent(Integer studentID);-->
+    <delete id="deleteStudent" parameterType="Integer">
+        DELETE FROM t_student where student_id =#{studentId}
+    </delete>
+
+    <!--boolean addStudent(Student student);-->
+    <insert id="addStudent" useGeneratedKeys="true" keyProperty="studentId">
+        INSERT INTO t_student
+        (student_no, student_name, gender, department, majority, grade, class_no,
+         graduate_year, source_city, address, student_password)
+        VALUES
+        (#{studentNo}, #{studentName}, #{gender}, #{department}, #{majority}, #{grade}, #{classNo},
+         #{graduateYear}, #{sourceCity}, #{address}, #{studentPassword})
+    </insert>
+
+    <!--boolean batchAddStudent(List<Student> students);-->
+    <insert id="batchAddStudent" useGeneratedKeys="true" keyProperty="studentId">
+        INSERT INTO t_student
+        (student_no, student_name, gender, department, majority, grade, class_no,
+         graduate_year, source_city, address, student_password)
+        VALUES
+        <foreach collection="students" item="student" separator=",">
+            (#{student.studentNo}, #{student.studentName}, #{student.gender}, #{student.department}, #{student.majority}, #{student.grade}, #{student.classNo},
+            #{student.graduateYear}, #{student.sourceCity}, #{student.address}, #{student.studentPassword})
+        </foreach>
+    </insert>
+
+    <!--boolean getStudents(Student student);-->
+    <select id="getStudents" resultType="student">
+        SELECT *
+        FROM t_student
+        <where>
+            <if test="studentNo != null and studentNo != ''">
+               and student_no = #{studentNo}
+            </if>
+            <if test="studentName != null and studentName != ''">
+                and student_name = #{studentName}
+            </if>
+            <if test="gender != null and gender != ''">
+                and gender = #{gender}
+            </if>
+            <if test="department != null and department != ''">
+                and department = #{department}
+            </if>
+            <if test="majority != null and majority != ''">
+                and majority = #{majority}
+            </if>
+            <if test="grade != null and grade != ''">
+                and grade = #{grade}
+            </if>
+            <if test="classNo != null and classNo != ''">
+                and class_no = #{classNo}
+            </if>
+            <if test="graduateYear != null and graduateYear != ''">
+                and  graduate_year = #{graduateYear}
+            </if>
+            <if test="sourceCity != null and sourceCity != ''">
+                and source_city = #{sourceCity}
+            </if>
+        </where>
+
+    </select>
+</mapper>

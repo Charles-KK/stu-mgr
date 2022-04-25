@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.student_manage.mapper.ManagerMapper">
+
+    <!--boolean addManager(Manager manager);-->
+    <insert id="addManager" keyProperty="managerId" useGeneratedKeys="true">
+        INSERT INTO t_manager
+        (manager_name, organization, position, tel, manager_password)
+        VALUES
+        (#{managerName}, #{organization}, #{position}, #{tel}, #{managerPassword})
+    </insert>
+
+<!--    Manager getManagerByName(String name);-->
+    <select id="getManagerByName" resultType="manager">
+        SELECT *
+        FROM t_manager
+        WHERE manager_name = #{name}
+    </select>
+
+    <!--List<Manager> getManager();-->
+    <select id="getManager" resultType="manager">
+        SELECT *
+        FROM t_manager
+    </select>
+    <!--List<Manager> fuzzyQueryByName(String name)-->
+    <select id="fuzzyQueryByName" resultType="manager" parameterType="String">
+        SELECT *
+        FROM t_manager
+        WHERE manager_name LIKE CONCAT('%',#{name},'%')
+    </select>
+
+<!--    boolean editManager(Manager manager);-->
+    <update id="editManager" parameterType="manager" keyProperty="managerId">
+        UPDATE t_manager
+        <set>
+            <if test="managerName !=null and managerName!=''">
+                manager_name = #{managerName},
+            </if>
+            <if test="organization !=null and organization!=''">
+                organization = #{organization},
+            </if>
+            <if test="position !=null and position!=''">
+                position = #{position},
+            </if>
+            <if test="tel !=null and tel!=''">
+                tel = #{tel},
+            </if>
+        </set>
+        WHERE manager_id=#{managerId}
+    </update>
+
+<!--    boolean deleteManager(Integer managerId);-->
+    <delete id="deleteManager" parameterType="Integer">
+        delete FROM t_manager
+        WHERE manager_id = #{managerId}
+    </delete>
+
+</mapper>
