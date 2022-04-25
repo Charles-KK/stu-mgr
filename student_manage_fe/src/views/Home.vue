@@ -11,18 +11,18 @@
         </el-row>
       </el-header>
       <el-container class="main-container">
-        <el-aside width="250px">
+        <el-aside width="130px">
           <el-menu
                 :default-active="defaultActive"
                 class="el-menu-vertical-demo"
                 @select="onSelect"
           >
             <el-menu-item index="1">
-              <i class="el-icon-reading"></i>
+              <i class="el-icon-s-order"></i>
               <span slot="title">请假管理</span>
             </el-menu-item>
             <el-menu-item index="2" v-if="$store.state.role === 'manager'">
-              <i class="el-icon-shopping-cart-full"></i>
+              <i class="el-icon-user"></i>
               <span slot="title">用户管理</span>
             </el-menu-item>
           </el-menu>

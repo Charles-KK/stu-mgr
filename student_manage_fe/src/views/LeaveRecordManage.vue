@@ -39,7 +39,7 @@
         <el-table-column
                 prop="reason"
                 label="请假原因"
-                width="300">
+                width="200">
         </el-table-column>
         <el-table-column
                 prop="leaveTime"
@@ -66,7 +66,7 @@
             <el-button
                     size="mini"
                     :disabled="scope.row.managerId"
-                    @click="approve(scope.row.recordId)">{{scope.row.recordId ? '已同意' : '同意'}}</el-button>
+                     @click="approve(scope.row.recordId)">{{scope.row.managerId ? '已同意' : '同意'}}</el-button>
           </template>
         </el-table-column>
       </el-table>

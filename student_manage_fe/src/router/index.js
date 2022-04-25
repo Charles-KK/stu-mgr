@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import{ request } from "../network/request";
+import{request} from "../network/request";
 import store from "../store/index"
 
 Vue.use(VueRouter)
@@ -20,7 +20,7 @@ const routes = [
     children: [
       {
         path: 'leaveRecord',
-        name: 'LeaveRecord',
+        name: 'LeaveRecord', 
         component: () => import('../views/LeaveRecordManage.vue')
       },
       {

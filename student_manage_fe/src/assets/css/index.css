@@ -27,3 +27,15 @@ html ::-webkit-scrollbar{
 tr.el-table__row.returned-record { /*在lendrecord.vue里面设置样式无效，不知原因*/
     background-color: #eee;
 }
+
+
+.dialog-form{
+    border-radius: 15px;
+    width: 50%;
+}
+
+.dialog-footer {
+    width: 200px;
+    margin: 0 auto; 
+    transform: translateX(-20%);
+}

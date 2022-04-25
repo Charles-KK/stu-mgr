@@ -34,24 +34,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-
-//    @Resource
-//    StudentMapper studentMapper;
-////GetMapping(value=“url地址”) 指定url 地址，添加一个get请求方法，这样就可以用注解的方法来实现get请求的监听了
-//    @GetMapping
-//    public Response findPage(@RequestParam(defaultValue = "1") Integer currentPage,
-//                             @RequestParam(defaultValue = "10") Integer pageSize,
-//                             @RequestParam(defaultValue = "") String search) {
-//        //分页对象，两个参数
-//        Wrapper<Student> wrapper = new EntityWrapper<>();
-//
-//        if(StrUtil.isNotBlank(search)){
-//            wrapper.like("student_name", search);
-//        }
-//        PageHelper.startPage(currentPage, pageSize);
-//        PageInfo pageInfo = new PageInfo<>(studentMapper.selectList(wrapper));
-//        return new Response().data(pageInfo);
-//    }
     //添加单个学生
     @PostMapping("/add")
     public Response addStudent(@RequestBody Student student) {

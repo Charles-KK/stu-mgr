@@ -10,9 +10,9 @@ import './assets/css/index.css'
 import global from './global/global'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI)
-Vue.use(VCharts)
+Vue.use(ElementUI,{size: 'small'})
 Vue.use(global)
+// Vue.use(VCharts)
 
 import {request} from "./network/request";
 

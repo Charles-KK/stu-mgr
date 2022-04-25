@@ -8,15 +8,13 @@
             登录
           </div>
           <div id="login-form-name">
-            <el-input placeholder="用户名" v-model="username"></el-input>
+            <el-input placeholder="用户名（姓名）" v-model="username"></el-input>
           </div>
           <div id="login-form-pass">
-            <el-input placeholder="密码" type="password" v-model="password" show-password
+            <el-input placeholder="密码（学生默认后学号六位）" type="password" v-model="password" show-password
                       @keyup.enter.native="doLogin"
             ></el-input>
           </div>
-
-
           <div id="login-form-submit" class="clearfix">
             <el-button type="primary" :loading="loading" @click="doLogin" >登录</el-button>
           </div>
