@@ -1,2 +1,12 @@
-package com.example.student_manage.controller;public class EchartsController {
+package com.example.student_manage.controller;
+
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping
+public class EchartsController {
+
+
 }

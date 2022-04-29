@@ -23,6 +23,7 @@ public class StudentListener extends AnalysisEventListener<Student> {
     }
 
     @Override
+//    每解析到一条数据，回调
     public void invoke(Student student, AnalysisContext analysisContext) {
         studentList.add(student);
         if (studentList.size() >= BATCH_COUNT) {
@@ -32,6 +33,7 @@ public class StudentListener extends AnalysisEventListener<Student> {
     }
 
     @Override
+//    文件读取完毕
     public void doAfterAllAnalysed(AnalysisContext analysisContext) {
         studentService.batchAddStudent(studentList);
         studentList.clear();

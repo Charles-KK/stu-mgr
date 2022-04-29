@@ -55,10 +55,13 @@ public class StudentService {
     public boolean deleteStudent(Integer stuId) {
         return  studentMapper.deleteStudent(stuId);
     }
+
+
     //按姓名模糊查询，分页查询
     public PageInfo fuzzyQueryByName(Integer currentPage, String name) {
         PageHelper.startPage(currentPage, 20);
         return new PageInfo<>(studentMapper.fuzzyQueryByName(name));
     }
+//    public doExport() {}
 
 }
