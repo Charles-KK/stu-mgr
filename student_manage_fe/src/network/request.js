@@ -9,14 +9,20 @@ export function request(options){
     withCredentials: true
   });
 
+//响应拦截器 在接口响应后统一处理结果
   instance.interceptors.response.use(res => {
     if (res.data.code === '401'){
       router.push('/login');
     }
     return res.data;
   }, err => {
+    // 504、404
     Message.error('系统错误')
   });
 
   return instance(options);
+}
+
+export function fileRequest() {
+  
 }

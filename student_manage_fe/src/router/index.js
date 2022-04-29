@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import{request} from "../network/request";
 import store from "../store/index"
 
 Vue.use(VueRouter)
+
+const originalPush = VueRouter.prototype.push
+// 修改 原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err=>err)
+}
 
 const routes = [
   {
@@ -26,10 +31,16 @@ const routes = [
       {
         path: 'userManage',
         name: 'UserManage',
-        component: () => import('../views/UserManage.vue')
-      }
+        component: () => import('../views/UserManage/index.vue')
+      },
+      {
+        path: 'displayBoard',
+        name: 'DisplayBoard',
+        component: () => import('../views/DisplayBoard.vue')
+      },
     ]
   },
+
   {
     path: '/login',
     name: 'Login',
