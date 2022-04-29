@@ -1,5 +1,9 @@
 package com.example.student_manage.service;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.example.student_manage.easyexcel.StudentListener;
 import com.example.student_manage.mapper.StudentMapper;
 import com.example.student_manage.pojo.Student;
 import com.example.student_manage.util.Response;
@@ -10,7 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 @Service
@@ -61,6 +68,17 @@ public class StudentService {
     public PageInfo fuzzyQueryByName(Integer currentPage, String name) {
         PageHelper.startPage(currentPage, 20);
         return new PageInfo<>(studentMapper.fuzzyQueryByName(name));
+    }
+
+    public void uploadStudent(MultipartFile file) throws IOException {
+        EasyExcel.read(file.getInputStream(), Student.class, new StudentListener(studentMapper)).sheet().doRead();
+    }
+
+    public void exportStudent(OutputStream outputStream) {
+        List<Student> list = studentMapper.getStudents(new Student());
+        ExcelWriter excelWriter = EasyExcel.write(outputStream, Student.class).build();
+        WriteSheet writeSheet = EasyExcel.writerSheet("学生信息").build();
+        excelWriter.write(list, writeSheet);
     }
 //    public doExport() {}
 
