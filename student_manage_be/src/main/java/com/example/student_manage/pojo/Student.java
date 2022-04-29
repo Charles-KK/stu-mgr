@@ -1,13 +1,20 @@
 package com.example.student_manage.pojo;
 
+import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.annotation.write.style.HeadFontStyle;
+import com.alibaba.excel.annotation.write.style.HeadStyle;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import org.apache.poi.ss.usermodel.FillPatternType;
 
 @TableName(value="t_student")
-@Data 
+@Data
+@HeadStyle(fillPatternType = FillPatternType.SOLID_FOREGROUND, fillForegroundColor = 9)
+@HeadFontStyle(fontHeightInPoints = 10)
+@ExcelIgnoreUnannotated
 public class Student {
 //    @TableId(value = "student_id",type = IdType.AUTO)
     private Integer studentId;
@@ -38,10 +45,10 @@ public class Student {
     @ExcelProperty("毕业年份")
     private Integer graduateYear;
 
-    @ExcelProperty("城市")
+    @ExcelProperty("生源地")
     private String sourceCity;
 
-    @ExcelProperty("地址")
+    @ExcelProperty("家庭地址")
     private String address;
 
 }
