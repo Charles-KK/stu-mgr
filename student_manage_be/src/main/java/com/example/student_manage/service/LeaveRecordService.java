@@ -41,5 +41,6 @@ public class LeaveRecordService {
         ExcelWriter excelWriter = EasyExcel.write(outputStream, LeaveRecord.class).build();
         WriteSheet writeSheet = EasyExcel.writerSheet("请假记录").build();
         excelWriter.write(list, writeSheet);
+        excelWriter.finish();
     }
 }
