@@ -31,10 +31,6 @@
             </div>
           </el-form>
         </el-tab-pane>
-        <el-tab-pane label="注册" name="second">
-          注册
-          <el-form></el-form>
-        </el-tab-pane>
       </el-tabs>
     </div>
     </div>  

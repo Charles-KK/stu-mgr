@@ -15,8 +15,10 @@ Vue.use(global)
 Vue.use(VCharts)
 
 import {request} from "./network/request";
+import {fileRequest} from "./network/fileRequest"
 
 Vue.prototype.$request = request
+Vue.prototype.$fileRequest = fileRequest
 
 new Vue({
   router,

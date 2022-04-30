@@ -1,5 +1,8 @@
 package com.example.student_manage.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.example.student_manage.excel.StudentListener;
+import com.example.student_manage.pojo.Student;
 import com.example.student_manage.service.LeaveRecordService;
 import com.example.student_manage.service.StudentService;
 import com.example.student_manage.util.Response;
@@ -25,17 +28,21 @@ public class FileController {
     @Autowired
     private LeaveRecordService leaveRecordService;
 
+//    @PostMapping("/uploadStudent")
+//    public Response uploadStudent(MultipartFile file) {
+//        try {
+//            studentService.uploadStudent(file);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            log.error("upload student err: {}", e.getMessage());
+//        }
+//        return new Response();
+//    }
     @PostMapping("/uploadStudent")
-    public Response uploadStudent(MultipartFile file) {
-        try {
-            studentService.uploadStudent(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-            log.error("upload student err: {}", e.getMessage());
-        }
-        return new Response();
+    public Response uploadStudents(MultipartFile file) throws IOException {
+      EasyExcel.read(file.getInputStream(), Student.class, new StudentListener(studentService)).sheet().doRead();
+      return new Response();
     }
-
 
     @GetMapping("/exportStudent")
     public void exportStudent(HttpServletResponse response) {

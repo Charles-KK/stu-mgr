@@ -22,7 +22,6 @@ import java.util.List;
 
 @Service
 public class StudentService {
-
     @Autowired
     private StudentMapper studentMapper;
 
@@ -70,16 +69,16 @@ public class StudentService {
         return new PageInfo<>(studentMapper.fuzzyQueryByName(name));
     }
 
-    public void uploadStudent(MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), Student.class, new StudentListener(studentMapper)).sheet().doRead();
-    }
+//    public void uploadStudent(MultipartFile file) throws IOException {
+//      EasyExcel.read(file.getInputStream(), Student.class, new StudentListener(studentMapper)).sheet().doRead();
+//    }
 
     public void exportStudent(OutputStream outputStream) {
         List<Student> list = studentMapper.getStudents(new Student());
+        System.out.println(list);
         ExcelWriter excelWriter = EasyExcel.write(outputStream, Student.class).build();
         WriteSheet writeSheet = EasyExcel.writerSheet("学生信息").build();
         excelWriter.write(list, writeSheet);
     }
-//    public doExport() {}
 
 }

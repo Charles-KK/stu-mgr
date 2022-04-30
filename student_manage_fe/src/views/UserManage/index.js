@@ -282,7 +282,7 @@ export default {
           if(r.code === '200') {
             this.loadStudentList();
             this.$message({
-              message: '删除成功',
+              message: '删除成功!',
               type: 'success'
             })
           } else {
@@ -330,15 +330,16 @@ export default {
     
     // TODO...
     uploadStudent(param) {
-      const data = new FormData();
-      data.append('file', param.file);
-      fileRequest({
-        url: '/import',
+      const formData = new FormData();
+      formData.append('file', param.file);
+      this.$fileRequest({
+        url: '/file/uploadStudent',
         method: 'POST',
-        data: data,
+        data: formData,
       }).then( r => {
         if (r.code === '200'){
           this.$message.success('上传成功');
+          this.loadStudentList();
         } else {
           this.$message.error('上传失败');
         }
@@ -346,8 +347,23 @@ export default {
         this.$message.error('系统错误')
       })
     },
-    downloadStudent(){
-      
+    downloadStudent() {
+      this.$request({
+        url:'file/exportStudent',
+        method:'GET',
+        // 文件流
+        responseType: 'blob'
+      }).then((res) => {
+        if(res.code === '200') {
+          this.$message.success('下载成功!')
+        }else {
+          this.$message.error('下载失败');
+        } 
+      }).catch(err => {
+        this.$message.error('系统错误');
+      })
     }
+
+
   }
 }

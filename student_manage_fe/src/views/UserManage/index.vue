@@ -45,15 +45,15 @@
             action=""
             :http-request="uploadStudent"
             :show-file-list="false"
+            accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
           >
             <el-button type="primary" plain 
-              @click="downloadFile"
               icon="el-icon-upload2"
               >导入学生信息</el-button
             >
           </el-upload>
           <el-button type="primary" plain 
-            @click="downloadFile"
+            @click="downloadStudent"
             icon="el-icon-download"
             >导出学生信息</el-button>
           </div>

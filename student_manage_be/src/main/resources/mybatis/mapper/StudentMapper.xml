@@ -73,11 +73,11 @@
     <insert id="batchAddStudent" useGeneratedKeys="true" keyProperty="studentId">
         INSERT INTO t_student
         (student_no, student_name, gender, department, majority, grade, class_no,
-         graduate_year, source_city, address)
+         graduate_year, source_city, address, student_password)
         VALUES
         <foreach collection="students" item="student" separator=",">
             (#{student.studentNo}, #{student.studentName}, #{student.gender}, #{student.department}, #{student.majority}, #{student.grade}, #{student.classNo},
-            #{student.graduateYear}, #{student.sourceCity}, #{student.address}, #{student.studentPassword})
+            #{student.graduateYear}, #{student.sourceCity}, #{student.address},#{student.studentPassword})
         </foreach>
     </insert>
 

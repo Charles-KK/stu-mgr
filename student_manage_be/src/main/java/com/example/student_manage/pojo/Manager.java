@@ -1,8 +1,7 @@
 package com.example.student_manage.pojo;
 
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-@TableName(value = "t_manager")
+//@TableName(value = "t_manager")
 @Data
 public class Manager {
 

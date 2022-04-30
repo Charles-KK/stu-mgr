@@ -22,7 +22,3 @@ export function request(options){
 
   return instance(options);
 }
-
-export function fileRequest() {
-  
-}

@@ -2,8 +2,8 @@ package com.example.student_manage.controller;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
+//import com.baomidou.mybatisplus.mapper.EntityWrapper;
+//import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.example.student_manage.dto.LoginEntity;
 import com.example.student_manage.dto.StudentQuery;
 import com.example.student_manage.excel.StudentListener;
@@ -61,12 +61,7 @@ public class StudentController {
             return new Response().code(Response.FAILED);
         }
     }
-    //以表格形式导入学生信息
-    @PostMapping("/import")
-    public Response importStudents(MultipartFile file) throws IOException {
-        EasyExcel.read(file.getInputStream(), Student.class, new StudentListener(studentService)).sheet().doRead();
-        return new Response();
-    }
+
     //获取学生列表
     @PostMapping
     public Response getStudents(@RequestBody StudentQuery query) {
