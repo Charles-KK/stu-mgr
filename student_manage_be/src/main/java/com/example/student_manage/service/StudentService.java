@@ -79,6 +79,7 @@ public class StudentService {
         ExcelWriter excelWriter = EasyExcel.write(outputStream, Student.class).build();
         WriteSheet writeSheet = EasyExcel.writerSheet("学生信息").build();
         excelWriter.write(list, writeSheet);
+        excelWriter.finish();
     }
 
 }
