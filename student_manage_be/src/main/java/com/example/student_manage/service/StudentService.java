@@ -81,4 +81,8 @@ public class StudentService {
         excelWriter.write(list, writeSheet);
     }
 
+    public List<Map<String, Integer>> getGenderDistrubute() {
+        return studentMapper.getGenderDistribute();
+    }
+
 }

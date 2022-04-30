@@ -27,6 +27,7 @@ public interface StudentMapper extends BaseMapper<Student> {
 
     List<Student> fuzzyQueryByName(String name);
 
+    List<Map<String, Integer>> getGenderDistribute();
 }
 
 
