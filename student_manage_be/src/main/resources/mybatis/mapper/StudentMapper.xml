@@ -116,4 +116,11 @@
         </where>
 
     </select>
+
+    <!-- List<Map<String, Integer>> getGenderDistribute(); -->
+    <select id="getGenderDistribute" resultType="hashmap">
+        SELECT gender, COUNT(*) AS COUNT
+        FROM t_student
+        GROUP BY gender
+    </select>
 </mapper>
